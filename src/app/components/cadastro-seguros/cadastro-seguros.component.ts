@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Seguro } from 'src/app/models/Seguro';
+import { Observable } from 'rxjs';
+import { MarcaCarroService } from 'src/app/services/marca-carro.service';
+import { MarcaCarro } from 'src/app/models/MarcaCarro';
+import { SeguroService } from 'src/app/services/seguro.service';
 
 @Component({
   selector: 'app-cadastro-seguros',
@@ -7,9 +12,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CadastroSegurosComponent implements OnInit {
 
-  constructor() { }
+  public seguro = new Seguro();
+  public marcasCarro$: Observable<MarcaCarro[]>;
+
+  constructor(private marcaCarroService: MarcaCarroService,
+    private seguroService: SeguroService) {
+
+  }
+
+  enviarNotificacao() {
+
+  }
+
+  cadastrar(){
+    this.seguroService.cadastrar(this.seguro);
+  }
 
   ngOnInit(): void {
+    this.marcasCarro$ = this.marcaCarroService.getMarcas();
   }
 
 }
