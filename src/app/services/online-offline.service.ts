@@ -9,8 +9,15 @@ export class OnlineOfflineService {
   private statusConexao$ = new Subject<boolean>();
 
   constructor() { 
-    window.addEventListener('online', () => this.atualizaStatusConexao());
-    window.addEventListener('offline', () => this.atualizaStatusConexao());
+    window.addEventListener('online', () => {
+      console.log('está online');
+      this.atualizaStatusConexao();
+    });
+
+    window.addEventListener('offline', () =>{
+      console.log('está offline');
+      this.atualizaStatusConexao();
+    } );
   }
 
 
